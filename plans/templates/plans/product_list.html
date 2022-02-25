@@ -1,12 +1,13 @@
-<html>
+{% extends 'plans/base.html' %}
 
-<head>
-  <title>商品リスト</title>
-</head>
-
-<body>
-  <p>Hi there!</p>
-  <p>It works!</p>
-</body>
-
-</html>
+{% block content %}
+{% for product in products %}
+<div class="product">
+  <div class="date">
+    <p>published: {{ product.published_date }}</p>
+  </div>
+  <h2><a href="">{{ product.title }}</a></h2>
+  <p>{{ product.text|linebreaksbr }}</p>
+</div>
+{% endfor %}
+{% endblock %}
