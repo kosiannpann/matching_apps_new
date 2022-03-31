@@ -41,6 +41,8 @@ INSTALLED_APPS = [
 
     'plans.apps.PlansConfig',
     'accounts.apps.AccountsConfig',
+    'message.apps.MessageConfig',
+    'purchase_history.apps.PurchaseHistoryConfig',
 
 ]
 
