@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from telnetlib import AUTHENTICATION
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,6 +44,10 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'message.apps.MessageConfig',
     'purchase_history.apps.PurchaseHistoryConfig',
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
 
 ]
 
@@ -97,6 +102,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 8,
+        }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -131,3 +139,37 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# django-allauthで利用するdjango.contrib.sitesを使うためにサイト識別用IDを設定している。
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    'allauth.accounts.auth_backends.AuthenticationBackend',
+    # 一般ユーザー用（メールアドレス認証）
+    'django.contrib.auth.backends.ModelBackend',
+    # 管理サイト用（ユーザー名認証）
+)
+
+# メールアドレス認証を変更する設定
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_USERNAME_REQUIRED = False
+
+# サインアップにメールアドレス確認をはさむよう設定
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_REQUIRED = True
+
+# ログイン/ログアウト後の遷移先を設定
+LOGIN_REDIRECT_URL = 'plans:index'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'accounts_login'
+
+# ログアウトリンクのクリックでログアウトする設定
+ACCOUNT_LOGOUT_ON_GET = True
+
+# django-allauthが送信するメールの件名に自動付与される接頭辞をブランクする設定
+ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
+
+# デフォルトのメール送信元を設定
+# 　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　後程設定する
+DEFAULT_FROM_EMAIL = 'llbsnmw@gmail.com'
