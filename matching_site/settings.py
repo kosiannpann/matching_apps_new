@@ -67,7 +67,7 @@ ROOT_URLCONF = 'matching_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'accounts', 'templates', 'allauth'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -163,7 +163,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 # ログイン/ログアウト後の遷移先を設定
 LOGIN_REDIRECT_URL = 'plans:index'
-ACCOUNT_LOGOUT_REDIRECT_URL = 'accounts_login'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
 # ログアウトリンクのクリックでログアウトする設定
 ACCOUNT_LOGOUT_ON_GET = True

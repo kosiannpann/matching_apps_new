@@ -4,15 +4,16 @@
 
 {% block active_signup %}active{% endblock %}
 
-{% block contents %}
+{% block content %}
 <div class="container">
   <div class="row">
     <div class="my-div-style">
       <h1>サインアップ</h1>
-      <form method="post" action="{% url 'account_signup' %}">
+      <form method="post" action="{% url 'accounts:signup' %}">
         {% csrf_token %}
 
         {{forms.as_p}}
+        <button type="submit">登録</button>
 
         {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
