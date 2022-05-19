@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import get_user_model  # ユーザーモデルを取得するため
-
+from .models import CustomUser
 
 # ユーザーモデル取得
 User = get_user_model()
@@ -26,7 +26,7 @@ class LoginForm(AuthenticationForm):
 class SignupForm(UserCreationForm):
 
     class meta:
-        model = User
+        model = CustomUser
         fields = ('last_name', 'first_name', 'email', 'username',)
 
     def __init__(self, *args, **kwargs):

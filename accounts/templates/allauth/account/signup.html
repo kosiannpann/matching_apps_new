@@ -12,7 +12,7 @@
       <form method="post" action="{% url 'accounts:signup' %}">
         {% csrf_token %}
 
-        {{forms.as_p}}
+        {{form.as_p}}
         <button type="submit">登録</button>
 
         {% if redirect_field_value %}
