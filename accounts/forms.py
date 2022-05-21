@@ -2,15 +2,16 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import get_user_model  # ユーザーモデルを取得するため
 from .models import CustomUser
+from allauth.account.forms import LoginForm, SignupForm
 
-# ユーザーモデル取得
-User = get_user_model()
-
-
-'''ログイン用フォーム'''
+# # ユーザーモデル取得
+# User = get_user_model()
 
 
-class LoginForm(AuthenticationForm):
+# '''ログイン用フォーム'''
+
+
+class MyLoginForm(LoginForm):
 
     # bootstrap4対応
     def __init__(self, *args, **kwargs):
@@ -23,11 +24,11 @@ class LoginForm(AuthenticationForm):
 '''サインアップ用フォーム'''
 
 
-class SignupForm(UserCreationForm):
+class MySignupForm(SignupForm):
 
-    class meta:
-        model = CustomUser
-        fields = ('last_name', 'first_name', 'email', 'username',)
+    # class meta:
+    #     model = CustomUser
+    #     fields = ('last_name', 'first_name', 'email', 'username',)
 
     def __init__(self, *args, **kwargs):
 
