@@ -2,9 +2,9 @@ from django.shortcuts import render, resolve_url
 # from .forms import LoginForm, SignupForm
 # from django.contrib.auth.views import LoginView
 # vfrom django.views import generic
-from django.contrib.auth.mixins import UserPassesTestMixin
-from django.views.generic import DetailView
-from .models import CustomUser
+#from django.contrib.auth.mixins import UserPassesTestMixin
+#from django.views.generic import DetailView
+#from .models import CustomUser
 
 '''プロフィール画面'''
 

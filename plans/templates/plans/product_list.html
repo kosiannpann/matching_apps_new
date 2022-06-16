@@ -1,5 +1,17 @@
 {% extends 'plans/base.html' %}
 
 {% block content %}
+<h1><a href={% url "plans:create_product" %}>授業プランを作る</a></h1>
+{% for product in products %}
+<!---商品自体の表示・非表示でifを作る-->
+<div>
+  <p>date: {{ product.created_date }}</p>
+  <h1><a href="">title: {{ product.title }}</a></h1>
+  <p>{{ product.text|linebreaksbr }}</p>
+  <p>{{ product.price|linebreaksbr }}</p>
+  <hr>
+</div>
+{% endfor %}
+
 
 {% endblock %}
